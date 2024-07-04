@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "40DDBE22-CBFE-4249-BC1D-94B1A8439074"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "28855F0E-869D-4B2D-B7CC-D0C345A0317A"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Final Project/File.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "22"
+            endingLineNumber = "22"
+            landmarkName = "fetchData()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "28855F0E-869D-4B2D-B7CC-D0C345A0317A - 4506f5da243f82f7"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Final_Project.FilingMetadata.fetchData() -&gt; ()"
+                  moduleName = "Final Project"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/justinbaik/Documents/Auburn/Mobile%20App%20Dev%20II/Final%20Project/Final%20Project/File.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "22"
+                  endingLineNumber = "22"
+                  offsetFromSymbolStart = "400">
+               </Location>
+               <Location
+                  uuid = "28855F0E-869D-4B2D-B7CC-D0C345A0317A - 4506f5da243f82f7"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Final_Project.FilingMetadata.fetchData() -&gt; ()"
+                  moduleName = "Final Project"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/justinbaik/Documents/Auburn/Mobile%20App%20Dev%20II/Final%20Project/Final%20Project/File.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "22"
+                  endingLineNumber = "22"
+                  offsetFromSymbolStart = "856">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
