@@ -104,7 +104,7 @@ class CompanyInfoViewModel : ObservableObject {
 
 class FilingsViewModel : ObservableObject {
     
-    @Published private(set) var submissions = [Filing]()
+    @Published private(set) var filings : [Filing] = []
     var paddedCik = ""
     
     func fetchSubmissions(cik: String) {
@@ -128,6 +128,7 @@ class FilingsViewModel : ObservableObject {
                             do {
                                 // Decode the JSON response
                                 let decodedData = try JSONDecoder().decode(Submissions.self, from: data)
+                                var fetchedFilings: [Filing] = []
                                 for index in 0..<50 {
                                     
                                     let filing = Filing(
@@ -139,12 +140,11 @@ class FilingsViewModel : ObservableObject {
                                         primaryDocument: decodedData.filings.recent.primaryDocument[index],
                                         primaryDocDescription: decodedData.filings.recent.primaryDocDescription[index]
                                     )
-                                    self.submissions.append(filing)
+                                    fetchedFilings.append(filing)
                                 }
-                                // Update the published property on the main queue
-                                //                        DispatchQueue.main.async {
-                                //                            submissions = decodedData
-                                //                        }
+                                DispatchQueue.main.async{
+                                    self.filings = fetchedFilings
+                                }
                             } catch {
                                 print(error)
                             }
@@ -153,16 +153,5 @@ class FilingsViewModel : ObservableObject {
                 }
                 .resume()
         }
-    }
-    
-    func padStringWithLeadingZeros(_ input: String, desiredLength: Int) -> String {
-        let currentLength = input.count
-        guard currentLength < desiredLength else {
-            return input // If input is already longer or equal to desired length, return input unchanged
-        }
-        
-        let numberOfZerosToPad = desiredLength - currentLength
-        let paddedString = String(repeating: "0", count: numberOfZerosToPad) + input
-        return paddedString
     }
 }

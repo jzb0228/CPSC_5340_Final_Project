@@ -17,6 +17,7 @@
 		D9EB62752C3A10EA00B6DFC6 /* FilingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9EB62742C3A10EA00B6DFC6 /* FilingsView.swift */; };
 		D9EB62772C3A16F200B6DFC6 /* Form8KModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9EB62762C3A16F200B6DFC6 /* Form8KModel.swift */; };
 		D9EB62792C3B3C2B00B6DFC6 /* ProjectViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9EB62782C3B3C2B00B6DFC6 /* ProjectViewModel.swift */; };
+		D9EB627B2C3B5A7600B6DFC6 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9EB627A2C3B5A7600B6DFC6 /* LoginView.swift */; };
 		D9FA99C52C3621170092FEA0 /* TickerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FA99C42C3621170092FEA0 /* TickerModel.swift */; };
 		D9FA99C72C3644870092FEA0 /* CompanyInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FA99C62C3644870092FEA0 /* CompanyInfoView.swift */; };
 /* End PBXBuildFile section */
@@ -52,6 +53,7 @@
 		D9EB62742C3A10EA00B6DFC6 /* FilingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilingsView.swift; sourceTree = "<group>"; };
 		D9EB62762C3A16F200B6DFC6 /* Form8KModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Form8KModel.swift; sourceTree = "<group>"; };
 		D9EB62782C3B3C2B00B6DFC6 /* ProjectViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectViewModel.swift; sourceTree = "<group>"; };
+		D9EB627A2C3B5A7600B6DFC6 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		D9FA99C42C3621170092FEA0 /* TickerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickerModel.swift; sourceTree = "<group>"; };
 		D9FA99C62C3644870092FEA0 /* CompanyInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyInfoView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -145,6 +147,7 @@
 				D95D2A152C32311000AF83C2 /* ContentView.swift */,
 				D9FA99C62C3644870092FEA0 /* CompanyInfoView.swift */,
 				D9EB62742C3A10EA00B6DFC6 /* FilingsView.swift */,
+				D9EB627A2C3B5A7600B6DFC6 /* LoginView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -174,6 +177,8 @@
 			dependencies = (
 			);
 			name = "Final Project";
+			packageProductDependencies = (
+			);
 			productName = "Final Project";
 			productReference = D95D2A102C32311000AF83C2 /* Final Project.app */;
 			productType = "com.apple.product-type.application";
@@ -246,6 +251,8 @@
 				Base,
 			);
 			mainGroup = D95D2A072C32311000AF83C2;
+			packageReferences = (
+			);
 			productRefGroup = D95D2A112C32311000AF83C2 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -294,6 +301,7 @@
 				D95D2A142C32311000AF83C2 /* Final_ProjectApp.swift in Sources */,
 				D9FA99C72C3644870092FEA0 /* CompanyInfoView.swift in Sources */,
 				D9EB62772C3A16F200B6DFC6 /* Form8KModel.swift in Sources */,
+				D9EB627B2C3B5A7600B6DFC6 /* LoginView.swift in Sources */,
 				D9EB62752C3A10EA00B6DFC6 /* FilingsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

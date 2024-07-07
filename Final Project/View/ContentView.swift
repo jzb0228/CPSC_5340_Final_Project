@@ -25,7 +25,7 @@ struct ContentView: View {
                 }
             }
             .onAppear {
-                tickerViewModel.fetchData()
+                tickerViewModel.fetchDataIfNeeded()
             }
             .navigationTitle("Public Companies")
         }

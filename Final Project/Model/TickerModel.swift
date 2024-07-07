@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct TickerModel: Decodable, Comparable, Identifiable {
+struct TickerModel: Decodable, Comparable, Identifiable, Equatable {
     
     let id = UUID()
     let cik_str: Int

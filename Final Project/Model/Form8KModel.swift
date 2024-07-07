@@ -128,7 +128,8 @@ struct Submissions : Decodable {
     }
 }
 
-struct Filing {
+struct Filing : Identifiable, Hashable {
+    let id = UUID()
     let accession: String
     let filingDate: String
     let reportDate: String?
