@@ -9,42 +9,57 @@ import SwiftUI
 
 struct CompanyInfoView: View {
     
+    @ObservedObject var submissionsViewModel = FilingsViewModel()
     @ObservedObject var companyInfoViewModel = CompanyInfoViewModel()
     var ticker: String
-    
-    init(ticker: String){
-        self.ticker = ticker
-    }
-    
+    var cik: String
+        
     var body: some View {
         ScrollView {
-            VStack(alignment: .center, spacing: 10) {
-//                Text(companyInfoViewModel.symbol)
-//                    .bold()
-//                Text(companyInfoViewModel.previousClose!.description)
-                HStack {
-                    Text("At open:")
-//                    Text(companyInfoViewModel.open)
+            if companyInfoViewModel.companyInfo != nil {
+                VStack(alignment: .center, spacing: 10) {
+                    HStack {
+                        Text(companyInfoViewModel.companyInfo!.symbol!)
+                            .bold()
+                        
+                        if companyInfoViewModel.companyInfo!.changes! > 0 {
+                            Image(systemName: "chart.line.uptrend.xyaxis")
+                                .foregroundColor(.green)
+                        } else {
+                            Image(systemName: "chart.line.downtrend.xyaxis")
+                                .foregroundColor(.red)
+                        }
+                    }
+                    
+                    Text(String(describing: companyInfoViewModel.companyInfo!.price!))
+                        .bold()
+                    Text(String(describing: companyInfoViewModel.companyInfo!.range!))
                 }
-//                if companyInfoViewModel.change! > 0 {
-                    Image(systemName: "chart.line.uptrend.xyaxis")
-                        .foregroundColor(.green)
-//                } else {
-//                    Image(systemName: "chart.line.downtrend.xyaxis")
-//                        .foregroundColor(.red)
-//                }
+                
+                Spacer()
+                
+                VStack(alignment: .leading) {
+                    
+                    Text("CEO: \(companyInfoViewModel.companyInfo!.ceo!)")
+                    Text("Company Overview: \(companyInfoViewModel.companyInfo!.description!)")
+                    Text("Filings: \(submissionsViewModel.submissions.description)")
+                    
+                }
+                
+
+            } else {
+                Text("No company information available")
             }
-            .imageScale(.large)
-//            FilingsView()
         }
         .onAppear {
-            companyInfoViewModel.fetchCompanyInfo(symbol: ticker)
+            companyInfoViewModel.fetchCompanyInfo(ticker: self.ticker)
+            submissionsViewModel.fetchSubmissions(cik: self.cik)
         }
         .padding()
     }
     
 }
 
-#Preview {
-    CompanyInfoView(ticker: "GME")
-}
+//#Preview {
+//    CompanyInfoView(ticker: "GME")
+//}

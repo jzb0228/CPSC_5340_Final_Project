@@ -18,17 +18,17 @@ struct ContentView: View {
             List {
                 ForEach(tickerViewModel.tickerData) { company in
                     NavigationLink {
-                        CompanyInfoView(ticker: company.ticker)
+                        CompanyInfoView(ticker: company.ticker, cik: String(company.cik_str))
                     } label: {
                         Text(company.title)
                     }
                 }
             }
+            .onAppear {
+                tickerViewModel.fetchData()
+            }
+            .navigationTitle("Public Companies")
         }
-        .onAppear {
-            tickerViewModel.fetchData()
-        }
-        .navigationTitle("Public Companies")
     }
 }
 
