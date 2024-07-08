@@ -2,8 +2,7 @@
 //  SignupView.swift
 //  Final Project
 //
-//  Created by Justin Baik on 7/7/24.
-//
+
 
 import SwiftUI
 import FirebaseAuth

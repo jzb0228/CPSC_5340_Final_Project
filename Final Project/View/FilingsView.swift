@@ -2,8 +2,6 @@
 //  FilingsView.swift
 //  Final Project
 //
-//  Created by Justin Baik on 7/6/24.
-//
 
 import SwiftUI
 

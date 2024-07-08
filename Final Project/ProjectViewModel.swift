@@ -1,9 +1,8 @@
 //
 //  ProjectViewModel.swift
 //  Final Project
-//
-//  Created by Justin Baik on 7/7/24.
-//
+
+
 import FirebaseCore
 import FirebaseFirestore
 import FirebaseAuth
@@ -14,29 +13,6 @@ class TickerViewModel : ObservableObject {
     private let url = "https://www.sec.gov/files/company_tickers.json"
     
     @Published private(set) var tickerData = [TickerModel]()
-    private var lastFetchDate: Date?
-    private let cacheExpirationInterval: TimeInterval = 3600 // 1 hour cache expiration
-    
-    
-    func fetchDataIfNeeded() {
-        // Check if data needs to be fetched based on caching logic
-        if shouldFetchData() {
-            fetchData()
-        } else {
-            print("Using cached data for tickers")
-        }
-    }
-    
-    private func shouldFetchData() -> Bool {
-        guard let lastFetchDate = lastFetchDate else {
-            // Fetch data if it hasn't been fetched before
-            return true
-        }
-        
-        // Fetch data if cache is expired
-        let currentTime = Date()
-        return currentTime.timeIntervalSince(lastFetchDate) > cacheExpirationInterval
-    }
     
     func fetchData() {
         if let url = URL(string: url) {
@@ -49,12 +25,10 @@ class TickerViewModel : ObservableObject {
                         do {
                             // Decode the JSON response
                             let decodedData = try JSONDecoder().decode([String: TickerModel].self, from: data)
-                            
-                            let companies = decodedData.values.sorted()
                             DispatchQueue.main.async {
                                 // Update the published property on the main queue
-                                self.tickerData = companies
-                                self.lastFetchDate = Date() // Update last fetch date
+                                let companies = decodedData.map {$0.value}
+                                self.tickerData = companies.sorted{ $0.title < $1.title }
                             }
                         } catch {
                             print(error)
@@ -106,17 +80,19 @@ class CompanyInfoViewModel : ObservableObject {
 
 class FilingsViewModel : ObservableObject {
     
-    @Published private(set) var filings : [Filing] = []
+    @Published private(set) var filings = [Filing]()
     var paddedCik = ""
     
     func fetchSubmissions(cik: String) {
         
+        print(cik)
         if cik.count < 10 {
             let numberOfZerosToPad = 10 - cik.count
             paddedCik = String(repeating: "0", count: numberOfZerosToPad) + cik
         } else {
             paddedCik = cik
         }
+        print(paddedCik)
         
         let url = "https://data.sec.gov/submissions/CIK\(paddedCik).json"
         if let url = URL(string: url) {
@@ -146,6 +122,7 @@ class FilingsViewModel : ObservableObject {
                                 }
                                 DispatchQueue.main.async{
                                     self.filings = fetchedFilings
+                                    print(self.filings)
                                 }
                             } catch {
                                 print(error)
@@ -157,3 +134,6 @@ class FilingsViewModel : ObservableObject {
         }
     }
 }
+    
+
+

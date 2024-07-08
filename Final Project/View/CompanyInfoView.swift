@@ -2,8 +2,6 @@
 //  TickerDetailView.swift
 //  Final Project
 //
-//  Created by Justin Baik on 7/3/24.
-//
 
 import SwiftUI
 
@@ -46,23 +44,36 @@ struct CompanyInfoView: View {
                             .bold()
                     }
                     .font(.system(size: 15))
-
+                    
                 }
                 
                 Spacer()
                 Spacer()
                 
                 VStack(alignment: .leading) {
-                        
-                        Text(companyInfoViewModel.companyInfo!.description!)
-                        Text("Filings: \(submissionsViewModel.filings.description)")
-                    }
-                List(submissionsViewModel.filings, id: \.accession) { filing in
-                    NavigationLink(destination: FilingsView()) {
-                        Text(filing.form ?? "Unknown Form")
+                    
+                    Text(companyInfoViewModel.companyInfo!.description!)
+                    Spacer()
+                    Spacer()
+                    Text("Recent Filings")
+                        .bold()
+                        .underline()
+                        .font(.system(size: 20))
+                    Spacer()
+                    ForEach(submissionsViewModel.filings) {filing in
+                        VStack(alignment: .leading) {
+                            Text(filing.filingDate)
+                                .font(.headline)
+                            Text(filing.form ?? "")
+                                .font(.subheadline)
+                        }
+                        .onTapGesture {
+                            if let url = URL(string: "https://www.sec.gov/Archives/edgar/data/\(cik)/\(filing.accession.replacingOccurrences(of: "-", with: ""))/\(filing.primaryDocument ?? "")") {
+                                UIApplication.shared.open(url)
+                            }
+                        }
                     }
                 }
-                
             } else {
                 Text("No company information available")
             }
@@ -73,7 +84,6 @@ struct CompanyInfoView: View {
         }
         .padding()
     }
-    
 }
 
 //#Preview {

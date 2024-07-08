@@ -2,8 +2,6 @@
 //  Form8KModel.swift
 //  Final Project
 //
-//  Created by Justin Baik on 7/6/24.
-//
 
 import Foundation
 
@@ -128,7 +126,8 @@ struct Submissions : Decodable {
     }
 }
 
-struct Filing : Identifiable, Hashable {
+struct Filing : Codable, Hashable, Identifiable {
+
     let id = UUID()
     let accession: String
     let filingDate: String

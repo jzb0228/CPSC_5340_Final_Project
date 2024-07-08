@@ -2,8 +2,6 @@
 //  TickerModel.swift
 //  Final Project
 //
-//  Created by Justin Baik on 7/3/24.
-//
 
 import Foundation
 

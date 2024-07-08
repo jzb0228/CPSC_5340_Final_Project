@@ -2,8 +2,6 @@
 //  ContentView.swift
 //  Final Project
 //
-//  Created by Justin Baik on 6/30/24.
-//
 
 import SwiftUI
 import FirebaseAuth
@@ -18,6 +16,19 @@ struct StockView: View {
         if userID == "" {
             AuthView()
         } else {
+            
+            Button(action: {
+                let firebaseAuth = Auth.auth()
+                do {
+                    try firebaseAuth.signOut()
+                    userID = ""
+                } catch let signOutError as NSError {
+                    print("Error signingout: %@", signOutError)
+                }
+            }) {
+                Text("Sign Out")
+            }
+            
             NavigationStack {
                 List {
                     ForEach(tickerViewModel.tickerData) { company in
@@ -28,19 +39,8 @@ struct StockView: View {
                         }
                     }
                 }
-                Button(action: {
-                    let firebaseAuth = Auth.auth()
-                    do {
-                        try firebaseAuth.signOut()
-                        userID = ""
-                    } catch let signOutError as NSError {
-                        print("Error signingout: %@", signOutError)
-                    }
-                }) {
-                    Text("Sign Out")
-                }
                 .onAppear {
-                    tickerViewModel.fetchDataIfNeeded()
+                    tickerViewModel.fetchData()
                 }
                 .navigationTitle("Public Companies")
             }
