@@ -14,6 +14,7 @@ struct SignupView: View {
     @State private var email : String = ""
     @State private var password : String = ""
     
+    //password requirements at least 1 uppercase, number and special char
     private func isValidPassword(_ password: String) -> Bool {
         let passwordRegex = NSPredicate(format: "SELF MATCHES %@", "^(?=.*[a-z])(?=.*[$@$#!%*?&])(?=.*[A-Z]).{6,}$")
         
