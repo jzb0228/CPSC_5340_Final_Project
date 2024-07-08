@@ -1,11 +1,14 @@
 //
-//  LoginView.swift
+//  SignupView.swift
 //  Final Project
+//
+//  Created by Justin Baik on 7/7/24.
+//
 
 import SwiftUI
 import FirebaseAuth
 
-struct LoginView: View {
+struct SignupView: View {
     @Binding var currentShowingView: String
     @AppStorage("uid") var userID : String = ""
     
@@ -20,11 +23,12 @@ struct LoginView: View {
     
     var body: some View {
         ZStack {
-            Color.white.edgesIgnoringSafeArea(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
+            Color.black.edgesIgnoringSafeArea(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
             
             VStack {
                 HStack {
-                    Text("Welcome Back")
+                    Text("Create an Account")
+                        .foregroundColor(.white)
                         .font(.largeTitle)
                         .bold()
                     
@@ -46,11 +50,12 @@ struct LoginView: View {
                             .foregroundColor(email.isValidEmail() ? .green : .red)
                     }
                 }
+                .foregroundColor(.white)
                 .padding()
                 .overlay {
                     RoundedRectangle(cornerRadius: 10)
                         .stroke(lineWidth: 2)
-                        .foregroundColor(.black)
+                        .foregroundColor(.white)
                 }
                 .padding()
                 
@@ -67,28 +72,29 @@ struct LoginView: View {
                             .foregroundColor(isValidPassword(password) ? .green : .red)
                     }
                 }
+                .foregroundColor(.white)
                 .padding()
                 .overlay {
                     RoundedRectangle(cornerRadius: 10)
                         .stroke(lineWidth: 2)
-                        .foregroundColor(.black)
+                        .foregroundColor(.white)
                 }
                 .padding()
                 
                 Button(action: {
                     withAnimation {
-                        self.currentShowingView = "signup"
+                        self.currentShowingView = "login"
                     }
                 }) {
-                    Text("Don't have an account?")
-                        .foregroundColor(.black.opacity(0.7))
+                    Text("Already have an account?")
+                        .foregroundColor(.gray)
                 }
                 
                 Spacer()
                 Spacer()
                 
                 Button {
-                    Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
+                    Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
                         if let error = error {
                             print(error)
                             return
@@ -96,15 +102,13 @@ struct LoginView: View {
                         
                         if let authResult = authResult {
                             print(authResult.user.uid)
-                            withAnimation{
-                                userID = authResult.user.uid
-                            }
+                            userID = authResult.user.uid
                         }
                     }
                     
                 } label: {
-                    Text("Sign In")
-                        .foregroundColor(.white)
+                    Text("Create New Account")
+                        .foregroundColor(.black)
                         .font(.title3)
                         .bold()
                     
@@ -113,7 +117,7 @@ struct LoginView: View {
                     
                         .background {
                             RoundedRectangle(cornerRadius: 10)
-                                .fill(Color.black)
+                                .fill(Color.white)
                         }
                         .padding(.horizontal)
                 }
